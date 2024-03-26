@@ -1,0 +1,50 @@
+name: napari-surface-picker
+display_name: Surface particle picker
+# use 'hidden' to remove plugin from napari hub search results
+visibility: public
+# see https://napari.org/stable/plugins/manifest.html for valid categories
+categories: ["Annotation", "Segmentation", "Acquisition"]
+contributions:
+  commands:
+    - id: napari-surface-picker.write_multiple
+      python_name: napari_surface_picker._writer:write_multiple
+      title: Save multi-layer data with Surface particle picker
+    - id: napari-surface-picker.write_single_image
+      python_name: napari_surface_picker._writer:write_single_image
+      title: Save image data with Surface particle picker
+    - id: napari-surface-picker.make_sample_data
+      python_name: napari_surface_picker._sample_data:make_sample_data
+      title: Load sample data from Surface particle picker
+    - id: napari-surface-picker.make_container_widget
+      python_name: napari_surface_picker:ImageThreshold
+      title: Make threshold Container widget
+    - id: napari-surface-picker.make_magic_widget
+      python_name: napari_surface_picker:threshold_magic_widget
+      title: Make threshold magic widget
+    - id: napari-surface-picker.make_function_widget
+      python_name: napari_surface_picker:threshold_autogenerate_widget
+      title: Make threshold function widget
+    - id: napari-surface-picker.make_qwidget
+      python_name: napari_surface_picker:ExampleQWidget
+      title: Make example QWidget
+  writers:
+    - command: napari-surface-picker.write_multiple
+      layer_types: ['image*','labels*']
+      filename_extensions: []
+    - command: napari-surface-picker.write_single_image
+      layer_types: ['image']
+      filename_extensions: ['.npy']
+  sample_data:
+    - command: napari-surface-picker.make_sample_data
+      display_name: Surface particle picker
+      key: unique_id.1
+  widgets:
+    - command: napari-surface-picker.make_container_widget
+      display_name: Container Threshold
+    - command: napari-surface-picker.make_magic_widget
+      display_name: Magic Threshold
+    - command: napari-surface-picker.make_function_widget
+      autogenerate: true
+      display_name: Autogenerate Threshold
+    - command: napari-surface-picker.make_qwidget
+      display_name: Example QWidget
