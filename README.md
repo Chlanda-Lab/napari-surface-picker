@@ -43,7 +43,7 @@ the coverage at least stays the same before you submit a pull request.
 
 ## License
 
-Distributed under the terms of the [MIT] license,
+Distributed under the terms of the [BSD-3] license,
 "napari-surface-picker" is free and open source software
 
 ## Issues
