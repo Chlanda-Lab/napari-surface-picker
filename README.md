@@ -1,10 +1,10 @@
 # napari-surface-picker
 
-[![License MIT](https://img.shields.io/pypi/l/napari-surface-picker.svg?color=green)](https://github.com/MoritzWM/napari-surface-picker/raw/main/LICENSE)
+[![License MIT](https://img.shields.io/pypi/l/napari-surface-picker.svg?color=green)](https://github.com/Chlanda-Lab/napari-surface-picker/raw/main/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/napari-surface-picker.svg?color=green)](https://pypi.org/project/napari-surface-picker)
 [![Python Version](https://img.shields.io/pypi/pyversions/napari-surface-picker.svg?color=green)](https://python.org)
-[![tests](https://github.com/MoritzWM/napari-surface-picker/workflows/tests/badge.svg)](https://github.com/MoritzWM/napari-surface-picker/actions)
-[![codecov](https://codecov.io/gh/MoritzWM/napari-surface-picker/branch/main/graph/badge.svg)](https://codecov.io/gh/MoritzWM/napari-surface-picker)
+[![tests](https://github.com/Chlanda-Lab/napari-surface-picker/workflows/tests/badge.svg)](https://github.com/Chlanda-Lab/napari-surface-picker/actions)
+[![codecov](https://codecov.io/gh/Chlanda-Lab/napari-surface-picker/branch/main/graph/badge.svg)](https://codecov.io/gh/Chlanda-Lab/napari-surface-picker)
 [![napari hub](https://img.shields.io/endpoint?url=https://api.napari-hub.org/shields/napari-surface-picker)](https://napari-hub.org/plugins/napari-surface-picker)
 
 Pick particle coordinates on a surface
@@ -33,7 +33,7 @@ You can install `napari-surface-picker` via [pip]:
 
 To install latest development version :
 
-    pip install git+https://github.com/MoritzWM/napari-surface-picker.git
+    pip install git+https://github.com/Chlanda-Lab/napari-surface-picker.git
 
 
 ## Contributing
@@ -61,7 +61,7 @@ If you encounter any problems, please [file an issue] along with a detailed desc
 [Mozilla Public License 2.0]: https://www.mozilla.org/media/MPL/2.0/index.txt
 [cookiecutter-napari-plugin]: https://github.com/napari/cookiecutter-napari-plugin
 
-[file an issue]: https://github.com/MoritzWM/napari-surface-picker/issues
+[file an issue]: https://github.com/Chlanda-Lab/napari-surface-picker/issues
 
 [napari]: https://github.com/napari/napari
 [tox]: https://tox.readthedocs.io/en/latest/
