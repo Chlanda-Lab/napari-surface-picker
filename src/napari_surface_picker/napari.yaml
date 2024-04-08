@@ -15,18 +15,9 @@ contributions:
     - id: napari-surface-picker.make_sample_data
       python_name: napari_surface_picker._sample_data:make_sample_data
       title: Load sample data from Surface particle picker
-    - id: napari-surface-picker.make_container_widget
-      python_name: napari_surface_picker:ImageThreshold
-      title: Make threshold Container widget
-    - id: napari-surface-picker.make_magic_widget
-      python_name: napari_surface_picker:threshold_magic_widget
-      title: Make threshold magic widget
-    - id: napari-surface-picker.make_function_widget
-      python_name: napari_surface_picker:threshold_autogenerate_widget
-      title: Make threshold function widget
-    - id: napari-surface-picker.make_qwidget
-      python_name: napari_surface_picker:ExampleQWidget
-      title: Make example QWidget
+    - id: napari-surface-picker.surface_picker_widget
+      python_name: napari_surface_picker:SurfacePicker
+      title: Surface picker widget
   writers:
     - command: napari-surface-picker.write_multiple
       layer_types: ['image*','labels*']
@@ -39,12 +30,5 @@ contributions:
       display_name: Surface particle picker
       key: unique_id.1
   widgets:
-    - command: napari-surface-picker.make_container_widget
-      display_name: Container Threshold
-    - command: napari-surface-picker.make_magic_widget
-      display_name: Magic Threshold
-    - command: napari-surface-picker.make_function_widget
-      autogenerate: true
-      display_name: Autogenerate Threshold
-    - command: napari-surface-picker.make_qwidget
-      display_name: Example QWidget
+    - command: napari-surface-picker.surface_picker_widget
+      display_name: Surface picker
