@@ -3,30 +3,17 @@ display_name: Surface particle picker
 # use 'hidden' to remove plugin from napari hub search results
 visibility: public
 # see https://napari.org/stable/plugins/manifest.html for valid categories
-categories: ["Annotation", "Segmentation", "Acquisition"]
+categories: ["Annotation", "Segmentation"]
 contributions:
   commands:
-    - id: napari-surface-picker.write_multiple
-      python_name: napari_surface_picker._writer:write_multiple
-      title: Save multi-layer data with Surface particle picker
-    - id: napari-surface-picker.write_single_image
-      python_name: napari_surface_picker._writer:write_single_image
-      title: Save image data with Surface particle picker
-    - id: napari-surface-picker.make_sample_data
-      python_name: napari_surface_picker._sample_data:make_sample_data
-      title: Load sample data from Surface particle picker
+    - id: napari-surface-picker.make_sample_mesh
+      python_name: napari_surface_picker._sample_data:make_sample_mesh
+      title: Load sample mesh from Surface particle picker
     - id: napari-surface-picker.surface_picker_widget
       python_name: napari_surface_picker:SurfacePicker
       title: Surface picker widget
-  writers:
-    - command: napari-surface-picker.write_multiple
-      layer_types: ['image*','labels*']
-      filename_extensions: []
-    - command: napari-surface-picker.write_single_image
-      layer_types: ['image']
-      filename_extensions: ['.npy']
   sample_data:
-    - command: napari-surface-picker.make_sample_data
+    - command: napari-surface-picker.make_sample_mesh
       display_name: Surface particle picker
       key: unique_id.1
   widgets:
