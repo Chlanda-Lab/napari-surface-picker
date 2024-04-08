@@ -9,6 +9,8 @@
 
 Pick particle coordinates on a surface
 
+![](screenshot.png)
+
 ----------------------------------
 
 This [napari] plugin was generated with [Cookiecutter] using [@napari]'s [cookiecutter-napari-plugin] template.
