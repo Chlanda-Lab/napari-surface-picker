@@ -17,7 +17,7 @@ contributions:
       title: Surface picker widget
   writers:
     - command: napari-surface-picker.write_starfile
-      layer_types: ['vectors']
+      layer_types: ['vectors*']
       filename_extensions: ['.star']
   sample_data:
     - command: napari-surface-picker.make_sample_mesh
