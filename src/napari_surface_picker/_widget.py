@@ -102,6 +102,11 @@ class SurfacePicker(Container):
         vectors_data[:, 0, :] = vertices
         vectors_data[:, 1, :] = normals
         if self._out_vectors_layer_combo.value is None:
-            self._out_vectors_layer_combo.value = self._viewer.add_vectors(vectors_data, name="Particle coordinates", vector_style="arrow", blending="translucent")
+            self._out_vectors_layer_combo.value = self._viewer.add_vectors(
+                vectors_data,
+                name=f"{self._in_surface_layer_combo.value.name} particles",
+                vector_style="arrow",
+                blending="translucent"
+            )
         else:
             self._out_vectors_layer_combo.value.data = vectors_data
