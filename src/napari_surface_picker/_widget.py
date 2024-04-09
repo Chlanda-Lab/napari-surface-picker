@@ -40,6 +40,13 @@ class SurfacePicker(Container):
         self._distance_box.value = 10
         # Invert checkbox
         self._invert_checkbox = CheckBox(value=False, label="Invert")
+        # Shift Z spinner
+        self._shift_z_box = create_widget(
+            label="Shift Z",
+            annotation=float,
+            widget_type="FloatSpinBox",
+        )
+        self._shift_z_box.value = 0
         # Create output surface checkbox
         self._create_out_surface_checkbox = CheckBox(value=False, label="Create output surface (slow!)")
         # Sample button
@@ -53,6 +60,7 @@ class SurfacePicker(Container):
                 self._out_vectors_layer_combo,
                 self._distance_box,
                 self._invert_checkbox,
+                self._shift_z_box,
                 self._create_out_surface_checkbox,
                 self.sample_button,
             ]
@@ -61,7 +69,6 @@ class SurfacePicker(Container):
     def _sample(self, *args):
         if self._in_surface_layer_combo.value is self._out_surface_layer_combo:
             raise ValueError("Input and output surface cannot be the same!")
-        from napari.layers import Points
         surface_layer = self._in_surface_layer_combo.value
         if surface_layer is None:
             return
@@ -86,8 +93,11 @@ class SurfacePicker(Container):
             else:
                 self._out_surface_layer_combo.value.data = (vertices, indices)
         # Vectors layer
+        # 1. Invert
         if self._invert_checkbox.value:
             normals *= -1
+        # 2. Shift in Z
+        vertices += normals * self._shift_z_box.value
         vectors_data = np.ndarray((len(vertices), 2, 3), dtype=float, order="C")
         vectors_data[:, 0, :] = vertices
         vectors_data[:, 1, :] = normals
