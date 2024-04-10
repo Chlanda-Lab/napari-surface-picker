@@ -39,7 +39,7 @@ class DipolePicker(Container):
             raise ValueError("Invalid data shape")
         coords = [vec[0] for vec in shapes_layer.data]
         normals = np.array([vec[1] - vec[0] for vec in shapes_layer.data])
-        normals /= np.linalg.norm(normals, axis=1)
+        normals /= np.linalg.norm(normals, axis=1).reshape((len(normals), 1))
 
         vectors_data = np.ndarray((len(coords), 2, 3), dtype=float)
         vectors_data[:, 0, :] = coords
