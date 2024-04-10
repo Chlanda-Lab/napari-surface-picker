@@ -1,16 +1,11 @@
 from typing import TYPE_CHECKING
 
-from magicgui import magic_factory
 from magicgui.widgets import CheckBox, Container, create_widget, PushButton
-from qtpy.QtWidgets import QHBoxLayout, QPushButton, QWidget
-from skimage.util import img_as_float
 import numpy as np
 from .cgal import Polyhedron
 
 if TYPE_CHECKING:
     import napari
-    from typing import Optional
-
 
 class SurfacePicker(Container):
     def __init__(self, viewer: "napari.viewer.Viewer"):

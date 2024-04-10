@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 
 from napari_surface_picker._sample_data import TUBE_VERTICES, TUBE_INDICES
-from napari_surface_picker._widget import SurfacePicker
+from napari_surface_picker._surface_picker import SurfacePicker
 
 if TYPE_CHECKING:
     import napari

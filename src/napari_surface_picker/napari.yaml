@@ -15,6 +15,9 @@ contributions:
     - id: napari-surface-picker.surface_picker_widget
       python_name: napari_surface_picker:SurfacePicker
       title: Surface picker widget
+    - id: napari-surface-picker.dipole_picker_widget
+      python_name: napari_surface_picker:DipolePicker
+      title: Dipole picker widget
   writers:
     - command: napari-surface-picker.write_starfile
       layer_types: ['vectors*']
@@ -26,3 +29,5 @@ contributions:
   widgets:
     - command: napari-surface-picker.surface_picker_widget
       display_name: Surface picker
+    - command: napari-surface-picker.dipole_picker_widget
+      display_name: Dipole picker
