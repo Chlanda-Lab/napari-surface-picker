@@ -6,9 +6,12 @@ visibility: public
 categories: ["Annotation", "Segmentation"]
 contributions:
   commands:
-    - id: napari-surface-picker.write_starfile
-      python_name: napari_surface_picker._writer:write_starfile
-      title: Save particle star file
+    - id: napari-surface-picker.write_star_warp
+      python_name: napari_surface_picker._writer:write_star_warp
+      title: Save Warp/M particle star file
+    - id: napari-surface-picker.write_star_reliontomo
+      python_name: napari_surface_picker._writer:write_star_reliontomo
+      title: Save Relion tomo particle star file
     - id: napari-surface-picker.make_sample_mesh
       python_name: napari_surface_picker._sample_data:make_sample_mesh
       title: Load sample mesh from Surface particle picker
@@ -19,9 +22,14 @@ contributions:
       python_name: napari_surface_picker:DipolePicker
       title: Dipole picker widget
   writers:
-    - command: napari-surface-picker.write_starfile
+    - command: napari-surface-picker.write_star_warp
       layer_types: ['vectors*']
       filename_extensions: ['.star']
+      display_name: "Warp/M particles .star"
+    - command: napari-surface-picker.write_star_reliontomo
+      layer_types: ['vectors*']
+      filename_extensions: ['.star']
+      display_name: "Relion tomo particles .star"
   sample_data:
     - command: napari-surface-picker.make_sample_mesh
       display_name: Surface particle picker
