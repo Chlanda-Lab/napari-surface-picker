@@ -1,11 +1,13 @@
 from typing import TYPE_CHECKING
 
-from magicgui.widgets import CheckBox, Container, create_widget, PushButton
 import numpy as np
+from magicgui.widgets import CheckBox, Container, PushButton, create_widget
+
 from .cgal import Polyhedron
 
 if TYPE_CHECKING:
     import napari
+
 
 class SurfacePicker(Container):
     def __init__(self, viewer: "napari.viewer.Viewer"):
@@ -13,12 +15,13 @@ class SurfacePicker(Container):
         self._viewer = viewer
         # Surface layer
         self._in_surface_layer_combo = create_widget(
-            label="Input surface",
-            annotation="napari.layers.Surface"
+            label="Input surface", annotation="napari.layers.Surface"
         )
+
         @self._in_surface_layer_combo.changed.connect
         def reset_out_vectors(*args):
             self._out_vectors_layer_combo.value = None
+
         # Vectors layer
         self._out_vectors_layer_combo = create_widget(
             label="Vectors",
@@ -77,7 +80,9 @@ class SurfacePicker(Container):
             normals *= -1
         # 2. Shift in Z
         vertices += normals * self._shift_z_box.value
-        vectors_data = np.ndarray((len(vertices), 2, 3), dtype=float, order="C")
+        vectors_data = np.ndarray(
+            (len(vertices), 2, 3), dtype=float, order="C"
+        )
         vectors_data[:, 0, :] = vertices
         vectors_data[:, 1, :] = normals
         if self._out_vectors_layer_combo.value is None:
@@ -85,7 +90,7 @@ class SurfacePicker(Container):
                 vectors_data,
                 name=f"{self._in_surface_layer_combo.value.name} particles",
                 vector_style="arrow",
-                blending="translucent"
+                blending="translucent",
             )
         else:
             self._out_vectors_layer_combo.value.data = vectors_data
