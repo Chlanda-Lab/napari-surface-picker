@@ -1,10 +1,11 @@
 from typing import TYPE_CHECKING
 
-from magicgui.widgets import Container, create_widget, PushButton
 import numpy as np
+from magicgui.widgets import Container, PushButton, create_widget
 
 if TYPE_CHECKING:
     import napari
+
 
 class DipolePicker(Container):
     def __init__(self, viewer: "napari.viewer.Viewer"):
@@ -12,9 +13,13 @@ class DipolePicker(Container):
         self._viewer = viewer
         # Surface layer
         self.in_shapes_layer_combo = create_widget(
-            label="Input shapes",
-            annotation="napari.layers.Shapes"
+            label="Input shapes", annotation="napari.layers.Shapes"
         )
+
+        @self._in_surface_layer_combo.changed.connect
+        def reset_out_vectors(*args):
+            self._out_vectors_layer_combo.value = None
+
         # Vectors layer
         self._out_vectors_layer_combo = create_widget(
             label="Vectors",
@@ -49,7 +54,7 @@ class DipolePicker(Container):
                 vectors_data,
                 name=f"{self.in_shapes_layer_combo.value.name} particles",
                 vector_style="arrow",
-                blending="translucent"
+                blending="translucent",
             )
         else:
             self._out_vectors_layer_combo.value.data = vectors_data
