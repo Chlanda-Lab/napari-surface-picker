@@ -16,11 +16,9 @@ class SurfacePicker(Container):
             label="Input surface",
             annotation="napari.layers.Surface"
         )
-        # New surface layer
-        self._out_surface_layer_combo = create_widget(
-            label="Output surface",
-            annotation="Optional[napari.layers.Surface]",
-        )
+        @self._in_surface_layer_combo.changed.connect
+        def reset_out_vectors(*args):
+            self._out_vectors_layer_combo.value = None
         # Vectors layer
         self._out_vectors_layer_combo = create_widget(
             label="Vectors",
@@ -42,8 +40,6 @@ class SurfacePicker(Container):
             widget_type="FloatSpinBox",
         )
         self._shift_z_box.value = 0
-        # Create output surface checkbox
-        self._create_out_surface_checkbox = CheckBox(value=False, label="Create output surface (slow!)")
         # Sample button
         self.sample_button = PushButton(text="Sample")
         self.sample_button.changed.connect(self._sample)
@@ -51,19 +47,15 @@ class SurfacePicker(Container):
         self.extend(
             [
                 self._in_surface_layer_combo,
-                self._out_surface_layer_combo,
                 self._out_vectors_layer_combo,
                 self._distance_box,
                 self._invert_checkbox,
                 self._shift_z_box,
-                self._create_out_surface_checkbox,
                 self.sample_button,
             ]
         )
 
     def _sample(self, *args):
-        if self._in_surface_layer_combo.value is self._out_surface_layer_combo:
-            raise ValueError("Input and output surface cannot be the same!")
         surface_layer = self._in_surface_layer_combo.value
         if surface_layer is None:
             return
@@ -80,14 +72,6 @@ class SurfacePicker(Container):
         vertices = polyhedron.vertices_array()
         normals = polyhedron.compute_vertex_normals()
         assert len(vertices) == len(normals)
-        # Surface layer
-        if self._create_out_surface_checkbox.value:
-            indices = polyhedron.indices_array()
-            if self._out_surface_layer_combo.value is None:
-                self._out_surface_layer_combo.value = self._viewer.add_surface((vertices, indices), name="Remeshed surface")
-            else:
-                self._out_surface_layer_combo.value.data = (vertices, indices)
-        # Vectors layer
         # 1. Invert
         if self._invert_checkbox.value:
             normals *= -1
