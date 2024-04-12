@@ -1,8 +1,10 @@
-import numpy as np
-import starfile
-import pandas as pd
 from typing import TYPE_CHECKING, Any, List, Sequence, Tuple, Union
+
+import numpy as np
+import pandas as pd
+import starfile
 from magicgui.widgets import request_values
+
 from .utils import vec2euler
 
 if TYPE_CHECKING:
@@ -50,10 +52,9 @@ def write_star_warp(path: str, data: List["FullLayerData"]) -> List[str]:
 def write_star_reliontomo(path: str, data: List["FullLayerData"]) -> List[str]:
     path = _ensure_suffix(path, ".star")
     particles = _layers_to_df(data, "rlnTomoName")
-    binning = request_values(
-        binning=int,
-        title="Enter tomogram binnings"
-    )["binning"]
+    binning = request_values(binning=int, title="Enter tomogram binnings")[
+        "binning"
+    ]
     particles[[f"rlnCoordinate{xyz}" for xyz in "XYZ"]] *= binning
     starfile.write({"particles": particles}, path, overwrite=True)
     return [path]
