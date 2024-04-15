@@ -12,11 +12,11 @@ class DipolePicker(Container):
         super().__init__()
         self._viewer = viewer
         # Surface layer
-        self.in_shapes_layer_combo = create_widget(
+        self._in_shapes_layer_combo = create_widget(
             label="Input shapes", annotation="napari.layers.Shapes"
         )
 
-        @self._in_surface_layer_combo.changed.connect
+        @self._in_shapes_layer_combo.changed.connect
         def reset_out_vectors(*args):
             self._out_vectors_layer_combo.value = None
 
@@ -30,14 +30,14 @@ class DipolePicker(Container):
         # Build widget
         self.extend(
             [
-                self.in_shapes_layer_combo,
+                self._in_shapes_layer_combo,
                 self._out_vectors_layer_combo,
                 self.sample_button,
             ]
         )
 
     def _sample(self, *args):
-        shapes_layer = self.in_shapes_layer_combo.value
+        shapes_layer = self._in_shapes_layer_combo.value
         if shapes_layer is None:
             return
         if not all(vec.shape == (2, 3) for vec in shapes_layer.data):
@@ -52,7 +52,7 @@ class DipolePicker(Container):
         if self._out_vectors_layer_combo.value is None:
             self._out_vectors_layer_combo.value = self._viewer.add_vectors(
                 vectors_data,
-                name=f"{self.in_shapes_layer_combo.value.name} particles",
+                name=f"{self._in_shapes_layer_combo.value.name} particles",
                 vector_style="arrow",
                 blending="translucent",
             )
