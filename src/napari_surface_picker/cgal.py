@@ -4,7 +4,7 @@ from typing import Tuple
 
 from CGAL.CGAL_Polyhedron_3 import Polyhedron_modifier, Polyhedron_3, ABSOLUTE_INDEXING
 from CGAL.CGAL_Kernel import Point_3
-from CGAL.CGAL_Polygon_mesh_processing import isotropic_remeshing, compute_vertex_normals, remove_isolated_vertices
+from CGAL.CGAL_Polygon_mesh_processing import isotropic_remeshing, compute_vertex_normals, remove_isolated_vertices, is_outward_oriented, reverse_face_orientations
 
 def _vec2tuple(vec):
     return vec.x(), vec.y(), vec.z()
@@ -32,6 +32,12 @@ class Polyhedron(Polyhedron_3):
 
     def remove_isolated_vertices(self):
         remove_isolated_vertices(self)
+
+    def is_outward_oriented(self) -> bool:
+        return is_outward_oriented(self)
+
+    def reverse_face_orientations(self):
+        reverse_face_orientations(self)
 
     def vertices_array_shape(self) -> Tuple[int, int]:
         return self.size_of_vertices(), 3

@@ -71,6 +71,8 @@ class SurfacePicker(Container):
         polyhedron = Polyhedron(vertices, indices)
         polyhedron.remove_isolated_vertices()
         polyhedron.isotropic_remeshing(self._distance_box.value)
+        if not polyhedron.is_outward_oriented():
+            polyhedron.reverse_face_orientations()
         # Build output
         vertices = polyhedron.vertices_array()
         normals = polyhedron.compute_vertex_normals()
